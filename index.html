@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Резюме - Король Марта</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<!-- Модальне вікно з формою -->
+<div id="feedback-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Форма зворотнього зв'язку</h2>
+      <form action="https://formspree.io/f/mqaqaqyr" method="POST">
+        <label for="name">Ім'я:</label>
+        <input type="text" id="name" name="name" required>
+  
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+  
+        <label for="phone">Номер телефону:</label>
+        <input type="tel" id="phone" name="phone" required>
+  
+        <label for="message">Повідомлення:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+  
+        <button type="submit">Відправити</button>
+      </form>
+    </div>
+  </div>
+  
+<body>
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider">
+          <span class="icon sun">☀️</span>
+          <span class="icon moon">🌙</span>
+      </span>
+  </label>
+  
+    
+
+  <div class="wrapper">
+    <div class="content"> <!-- НОВА ОБГОРТКА -->
+
+      <div class="container">
+        <div class="left">
+          <header>
+            <img src="3.jpg" alt="Фото" />
+            <h1>Король Марта</h1>
+            <h2>Seo спеціаліст</h2>
+          </header>
+          <section>
+            <h3>Професійні вміння</h3>
+            <ul>
+              <li>Користування Google Docs</li>
+              <li>Ahrefs для SEO-аналізу</li>
+              <li>Serpstat для моніторингу позицій</li>
+              <li>Surfer SEO для оптимізації контенту</li>
+              <li>Створення SEO-контенту</li>
+              <li>Розробка технічних завдань для лінкбілдерів</li>
+              <li>Збирання семантики для проектів</li>
+              <li>Аналіз конкурентів та їхніх стратегій</li>
+            </ul>
+          </section>
+          <section id="contact">
+            <h3>Контакти</h3>
+            <p>Україна, м. Львів</p>
+            <p><a href="tel:+380123456789">Телефон: +380123456789</a></p>
+            <a href="mailto:youremail@example.com">Написати email</a>
+          </section>
+        </div>
+
+        <div class="right">
+          <section>
+            <h3>Особистий профіль</h3>
+            <p>Студентка Національного університету "Львівська політехніка" за спеціальністю кібербезпека...</p>
+          </section>
+          <section>
+            <h3>Досвід роботи</h3>
+            <p>Стажування в компанії Appex Soft — 06.2024 – 07.2024</p>
+            <p>Seo спеціаліст в компанії Webugol — 08.2024 – по теперішній час</p>
+          </section>
+          <section>
+            <h3>Освіта</h3>
+            <p>Національний університет "Львівська Політехніка" — Бакалавр</p>
+            <p>Спеціальність "Кібербезпека" — 09.2022 – 06.2026</p>
+          </section>
+          <section>
+            <h3>Курси та сертифікати</h3>
+            <ul>
+              <li>Курс англійської мови з сертифікатом рівня B1</li>
+              <li>Проходження курсу англійської мови на рівні B2 (в процесі)</li>
+              <li>Курси локального SEO від Bright Local</li>
+              <li>Курси з SEO навчання від Devaka</li>
+              <li>Онлайн-уроки SEO-просування сайтів на платформі Collaborator</li>
+            </ul>
+          </section>
+        </div>
+      </div> <!-- /container -->
+
+      <section id="comments" class="comments-section">
+        <h3>Відгуки роботодавців</h3>
+        <!-- Коментарі вставляться скриптом -->
+      </section>
+
+    </div> 
+
+    <footer>
+      <p>© 2025 Король Марта. Всі права захищено.</p>
+      <div id="browser-info"></div>
+    </footer>
+  </div>
+
+  <script>
+    const browserInfo = {
+      userAgent: navigator.userAgent,
+      platform: navigator.platform,
+      language: navigator.language,
+      cookiesEnabled: navigator.cookieEnabled,
+      online: navigator.onLine
+    };
+    localStorage.setItem('browserInfo', JSON.stringify(browserInfo));
+
+    const info = JSON.parse(localStorage.getItem('browserInfo'));
+    const infoDiv = document.getElementById('browser-info');
+    if (infoDiv) {
+      infoDiv.innerHTML = `
+        <p><strong>ОС та Браузер:</strong> ${info.userAgent}</p>
+        <p><strong>Платформа:</strong> ${info.platform}</p>
+        <p><strong>Мова:</strong> ${info.language}</p>
+        <p><strong>Cookies увімкнені:</strong> ${info.cookiesEnabled}</p>
+        <p><strong>Онлайн статус:</strong> ${info.online ? 'Онлайн' : 'Офлайн'}</p>
+      `;
+    }
+   </script>
+   <script>
+    fetch(`https://jsonplaceholder.typicode.com/posts/12/comments`)
+      .then(response => response.json())
+      .then(comments => {
+        const commentsSection = document.getElementById('comments');
+        comments.forEach(comment => {
+          const commentDiv = document.createElement('div');
+          commentDiv.classList.add('comment');
+          commentDiv.innerHTML = `
+            <h4>${comment.name}</h4>
+            <p>${comment.body}</p>
+            <small>від: ${comment.email}</small>
+          `;
+          commentsSection.appendChild(commentDiv);
+        });
+      })
+  </script>
+
+<script>
+  setTimeout(() => {
+    document.getElementById('feedback-modal').style.display = 'block';
+  }, 60000);
+
+  const modal = document.getElementById('feedback-modal');
+  const closeButton = document.querySelector('.close-button');
+  const form = modal.querySelector('form');
+
+  closeButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  form.addEventListener('submit', async function(event) {
+    event.preventDefault(); // не перезавантажувати сторінку
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        form.innerHTML = "<p style='text-align:center; font-size:18px; color:green;'>Дякуємо за відправку!</p>";
+      } else {
+        form.innerHTML = "<p style='text-align:center; font-size:18px; color:red;'>Сталася помилка. Спробуйте пізніше.</p>";
+      }
+    } catch (error) {
+      // Видалено блок catch
+    }
+  });
+</script>
+
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  
+  function applyTheme(theme) {
+    document.body.className = `${theme}-theme`;
+    toggle.checked = theme === 'night';
+    localStorage.setItem('theme', theme);
+  }
+  
+  window.addEventListener('DOMContentLoaded', () => {
+    applyTheme(localStorage.getItem('theme') || (new Date().getHours() >= 7 && new Date().getHours() < 21 ? 'day' : 'night'));
+  });
+  
+  toggle.addEventListener('change', () => applyTheme(toggle.checked ? 'night' : 'day'));
+  </script>
+  
+</body>
+</html>
